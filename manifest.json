@@ -1,9 +1,9 @@
 {
-	"manifest_version":2,
+	"manifest_version":3,
 	
-	"name":"URL check",
-	"description":"check mouse over URL",
-	"version":"1.0",
+	"name":"URL Extract + Hover Image",
+	"description":"hover mouse over hyper-link to extract URL or image",
+	"version":"3.1",
 	
 	"browser_action":{
 		"default_popup":"popup.html"
@@ -12,7 +12,7 @@
 	"content_scripts":[
 	{
 		"matches":["http://www.reddit.com/*"],
-		"js":["core.js"],
+		"js":["jquery-1.11.3.min.js","core.js"],
 		"css":["core.css"]
 	}
 	],
