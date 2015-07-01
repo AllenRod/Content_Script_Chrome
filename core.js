@@ -1,62 +1,76 @@
 // Create new div
-var newDiv = document.createElement('div');
-newDiv.className = 'core';
-var str = "";
+var newDiv = $(document.createElement('div'));
+newDiv.addClass("core");
+var url = "";
+var urlTag = $(document.createElement('p'));
+
 
 // Get the path of the check image
-var check = document.createElement("img");
-check.src = chrome.extension.getURL("images/check.png");
-check.height = "20";
-check.width = "20";
-
-// Create new image for imgur.com
-var img = document.createElement("img");
-
-// Mouse listener for move over event on the current document.
-document.addEventListener('mouseover', function (event) {
-  // Check if the underlying element is an <a>.
-  if (event.target.nodeName == 'A') {
-	str = event.target.href;
-	// Check hostname
-	if ((/reddit.com/.test(str)) || (/redd.it/.test(str)) 
-	|| (/youtu.be/.test(str)) || (/youtube.com/.test(str))
-	|| (/gfycat.com/.test(str))) {
-		newDiv.appendChild(check);
-	} else if (/imgur.com/.test(str)) {
-		// The URL leads to imgur.com
-		if ((/gallery/.test(str)) || (/.gifv\b/.test(str))
-		|| (/.webm\b/.test(str))) {
-			newDiv.appendChild(check);
-		} else {
-			if ((!(/.jpg\b/.test(str))) && (!(/.png\b/.test(str))) 
-			&& (!(/.gif\b/.test(str)))) {
-				str += ".jpg";
+var check = $(document.createElement('img'));
+var checkURL = chrome.extension.getURL("images/check.png");
+check.attr( "src", checkURL);
+check.height(20);
+check.width(20);
+			
+// Create new image from imgur.com
+var img = $(document.createElement("img"));
+		
+// Mouse listener for hovering over hyper-link <a>.
+$('a').hover( 
+	// Mouse over
+	function() {		
+		url = $(this).attr("href");
+		// Check hostname
+		if ((/reddit.com/.test(url)) || (/redd.it/.test(url)) 
+		|| (/youtu.be/.test(url)) || (/youtube.com/.test(url))
+		|| (/gfycat.com/.test(url))) {
+			newDiv.append(check);
+		} else if (/imgur.com/.test(url)) {
+			// The URL leads to imgur.com
+			if ((/gallery/.test(url)) || (/.webm\b/.test(url))) {
+				newDiv.append(check);
+			} else {
+				if (/.gifv\b/.test(url)) {
+					var n = url.indexOf(".gifv");
+					url = url.substr(0, n);
+					url += ".jpg";
+				} else if ((!(/.jpg\b/.test(url))) && (!(/.png\b/.test(url))) 
+				&& (!(/.gif\b/.test(url)))) {
+					url += ".jpg";
+				}
+				img.attr("src", url);
+				img.load(function() {
+					resize(img);
+				});
+				newDiv.append(img);
 			}
-			img.src = str;
-			imageMod(img);
-			newDiv.appendChild(img);
+		} else {
+			urlTag.text(url);
+			newDiv.append(urlTag);
 		}
-	} else {
-		newDiv.innerHTML = str;
+		$(this).append(newDiv);
+		newDiv.show();
+	},
+  
+	// Mouse out
+	function() {
+		$(this).detach(".core");
+		img.attr("src", "");
+		img.css("height", "auto", "width", "auto");
+		newDiv.empty();
+		newDiv.hide();
+		hoverImg = false;
 	}
-	newDiv.style.visibility = "visible";
-	event.target.appendChild(newDiv);
-  }
-});
-
-// Mouse listener for move out event on the current document
-document.addEventListener('mouseout', function(event) {
-  if (event.target.nodeName == 'A') {
-	newDiv.innerHTML = "";
-	newDiv.style.visibility = 'hidden';
-	img.src = "";
-  }
-});
+);
 
 // Resize image 
-function imageMod(image) {
-	while ((image.height > 250) && (image.width > 250)) {
-		image.height *= 0.8;
-		image.width *= 0.8;
+function resize(image) {
+	var h = image.height();
+	var w = image.width();
+	while ((h > 300) && (w > 300)) {
+		h = Math.round(h * 0.7);
+		w = Math.round(w * 0.7);
 	}
+	image.height(h);
+	image.width(w);
 }
