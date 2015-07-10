@@ -1,5 +1,5 @@
 {
-	"manifest_version":3,
+	"manifest_version":2,
 	
 	"name":"URL Extract + Hover Image",
 	"description":"hover mouse over hyper-link to extract URL or image",
@@ -12,12 +12,12 @@
 	"content_scripts":[
 	{
 		"matches":["http://www.reddit.com/*"],
-		"js":["jquery-1.11.3.min.js","core.js"],
+		"js":["jquery-1.11.3.min.js","core.js","index.js","filter.js","edit.js"],
 		"css":["core.css"]
 	}
 	],
 	
 	"web_accessible_resources": [
-		"images/*.png"
+		"images/*.png","index.html"
 	]
 }
