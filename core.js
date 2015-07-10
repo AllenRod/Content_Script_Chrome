@@ -1,4 +1,4 @@
-// Create new div
+// Create new div as the holder
 var newDiv = $(document.createElement('div'));
 newDiv.addClass("core");
 var url = "";
@@ -12,18 +12,19 @@ check.attr( "src", checkURL);
 check.height(20);
 check.width(20);
 			
-// Create new image from imgur.com
+// Create the image as the holder
 var img = $(document.createElement("img"));
-		
+
 // Mouse listener for hovering over hyper-link <a>.
 $('a').hover( 
 	// Mouse over
-	function() {		
+	function() {
 		url = $(this).attr("href");
+		loadDone();
 		// Check hostname
 		if ((/reddit.com/.test(url)) || (/redd.it/.test(url)) 
 		|| (/youtu.be/.test(url)) || (/youtube.com/.test(url))
-		|| (/gfycat.com/.test(url))) {
+		|| (/gfycat.com/.test(url)) || (/\/r\//.test(url))) {
 			newDiv.append(check);
 		} else if (/imgur.com/.test(url)) {
 			// The URL leads to imgur.com
