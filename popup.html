@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title> Introduction </title>
+	<title> Introduction </title>
+	<script src="index.js"></script>
+	<script src="jquery-1.11.3.min.js"></script>
+	<style>
+		#wrapper {
+			width:275px;
+			font-size:14px;
+		}
+	</style>
+</head>
+
 <body>
-<p>This chrome extension is used to extract the URL from 
-the hyper-links of the website http://www.reddit.com. 
-Move mouse over to see the url, and if the hyper-links 
-contain the following host names: "imgur.com", 
-"reddit.com", and "youtube.com", output check.png.</p>
+	<div id="wrapper">
+	<p>This chrome extension displays the url right below a
+	hyper-link for convenience. This extension is also designed
+	for better experience browsing a forum website.</p>
+	<p>It keeps a list of trusted website as a filter, and displays
+	image if the hyper-link leads to a image hosting site.</p>
+	
+	</br>
+	
+	<a id="link" href="" target="_blank">
+		<div id="goTo">Go to Index</div>
+	</a>
+	</div>
 </body>
 </html>
