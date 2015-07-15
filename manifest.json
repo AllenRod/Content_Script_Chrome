@@ -1,9 +1,9 @@
 {
-	"manifest_version":3,
+	"manifest_version":2,
 	
 	"name":"URL Extract + Hover Image",
 	"description":"hover mouse over hyper-link to extract URL or image",
-	"version":"3.1",
+	"version":"4.1",
 	
 	"browser_action":{
 		"default_popup":"popup.html"
@@ -12,12 +12,16 @@
 	"content_scripts":[
 	{
 		"matches":["http://www.reddit.com/*"],
-		"js":["jquery-1.11.3.min.js","core.js"],
+		"js":["jquery-1.11.3.min.js","core.js","index.js","filter.js","option.js"],
 		"css":["core.css"]
 	}
 	],
 	
 	"web_accessible_resources": [
-		"images/*.png"
+		"images/*.png","index.html"
+	],
+	
+	"permissions": [
+		"storage"
 	]
 }
