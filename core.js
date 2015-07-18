@@ -1,9 +1,11 @@
-// Create new div
+/**
+ * Handle the hovering over <A> tag and update content of the page.
+ */
+// Create new div as the holder
 var newDiv = $(document.createElement('div'));
 newDiv.addClass("core");
 var url = "";
 var urlTag = $(document.createElement('p'));
-
 
 // Get the path of the check image
 var check = $(document.createElement('img'));
@@ -12,44 +14,18 @@ check.attr( "src", checkURL);
 check.height(20);
 check.width(20);
 			
-// Create new image from imgur.com
+// Create the image as the holder
 var img = $(document.createElement("img"));
-		
-// Mouse listener for hovering over hyper-link <a>.
+
+// Mouse listener for hovering over hyper-link <A>.
 $('a').hover( 
 	// Mouse over
-	function() {		
+	function() {
 		url = $(this).attr("href");
-		// Check hostname
-		if ((/reddit.com/.test(url)) || (/redd.it/.test(url)) 
-		|| (/youtu.be/.test(url)) || (/youtube.com/.test(url))
-		|| (/gfycat.com/.test(url))) {
-			newDiv.append(check);
-		} else if (/imgur.com/.test(url)) {
-			// The URL leads to imgur.com
-			if ((/gallery/.test(url)) || (/.webm\b/.test(url))) {
-				newDiv.append(check);
-			} else {
-				if (/.gifv\b/.test(url)) {
-					var n = url.indexOf(".gifv");
-					url = url.substr(0, n);
-					url += ".jpg";
-				} else if ((!(/.jpg\b/.test(url))) && (!(/.png\b/.test(url))) 
-				&& (!(/.gif\b/.test(url)))) {
-					url += ".jpg";
-				}
-				img.attr("src", url);
-				img.load(function() {
-					resize(img);
-				});
-				newDiv.append(img);
-			}
-		} else {
-			urlTag.text(url);
-			newDiv.append(urlTag);
-		}
-		$(this).append(newDiv);
-		newDiv.show();
+		// Pass url and the current element to callback function
+		filter(url, $(this)); 
+		// For image hover
+		imgProc(url, img, $(this));
 	},
   
 	// Mouse out
@@ -63,14 +39,28 @@ $('a').hover(
 	}
 );
 
-// Resize image 
-function resize(image) {
-	var h = image.height();
-	var w = image.width();
-	while ((h > 300) && (w > 300)) {
-		h = Math.round(h * 0.7);
-		w = Math.round(w * 0.7);
+/**
+ * Append content to newDiv depends on parameter.
+ * @param arg	Content to be appended to newDiv
+ */
+function appendDiv(arg){
+	if (arg == true) {
+		newDiv.append(check);
+	} else if ((typeof arg) == "string") {
+		urlTag.text(arg);
+		newDiv.append(arg);
+	} else {
+		newDiv.append(arg);
+		newDiv.append("</br>");
 	}
-	image.height(h);
-	image.width(w);
+}
+
+/**
+ * Append newDiv to the hovered element.
+ * @param ele	The hovering <A> tag
+ */
+function append(ele) {
+	ele.append(newDiv);
+	newDiv.show();
+
 }
