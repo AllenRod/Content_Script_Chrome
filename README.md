@@ -13,8 +13,8 @@ check.png and jquery-1.11.3.min.js are not included.
 Add a filter list to store trusted domains and change the display of DIV.
 After trying with AJAX and other storing method, chrome.storage is chosen and used to store the filter list in the computer.
 Now it successfully loads and saves the filter list.
+Filter list now can filter trusted websites, and elminate the display of URL.
 
 TODO:
-Finish the filtering script.
 Allow display of galleries, and enable to switch images in the gallery.
 Add feature for video tag element.
