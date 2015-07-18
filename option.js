@@ -1,16 +1,24 @@
+/**
+ * Manage loading, displaying, saving and clearing the list from storage.
+ */
 window.onload = function() {
-	// Get the list already saved in storage
+	/**
+	 * Get the saved object from storage, and display in "#list" textarea.
+	 * If storage is empty, display the text instead.
+	 */
 	chrome.storage.local.get("filter", function(result) {
 		if (result["filter"]) {
 			$("#lists").val(result["filter"]);
 		} else {
 			$("#lists").val("The list is currently empty, please remove " + 
-			"this line and enter your trusted web domains. Please separate " +
-			"with semicolon.");
+			"this line and enter your trusted web domains.");
 		}
 	});
 	
-	// Save the list to local storage
+	/**
+	 * Save the content in "#list" textarea in local storage.
+	 * Triggered by "#save" button.
+	 */
 	$("#save").click( function() {
 		$("#lists").change( function() {
 			return;
@@ -23,7 +31,10 @@ window.onload = function() {
 		}
 	});
 	
-	// Clear the list
+	/**
+	 * Clear all local storage. 
+	 * Triggered by "#clear" button.
+	 */
 	$("#clear").click( function() {
 		chrome.storage.local.clear( function() {
 			$("#lists").val("");
