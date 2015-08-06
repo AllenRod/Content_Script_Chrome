@@ -3,7 +3,7 @@
 	
 	"name":"URL Extract + Hover Image",
 	"description":"hover mouse over hyper-link to extract URL or image",
-	"version":"4.3",
+	"version":"4.4",
 	
 	"browser_action":{
 		"default_popup":"popup.html"
@@ -11,10 +11,10 @@
 	
 	"content_scripts":[
 	{
-		"matches":["http://www.reddit.com/*"],
+		"matches":["http://www.reddit.com/*", "https://www.reddit.com/*"],
 		"js":["jquery-1.11.3.min.js","core.js","index.js","filter.js","option.js",
-		"imgprocess.js"],
-		"css":["core.css"]
+		"imgprocess.js", "bootstrap.min.js"],
+		"css":["bootstrap.min.css", "core.css"]
 	}
 	],
 	
