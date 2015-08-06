@@ -16,8 +16,9 @@ function filter(matchString, ele) {
 		if (result["filter"]) {
 			list = result["filter"];
 		} else {
-			appendDiv(matchString);
-			append(ele);
+			//appendDiv(matchString);
+			//append(ele);
+			addPopover(ele, matchString);
 			return;
 		}
 		// Split list into array
@@ -27,13 +28,22 @@ function filter(matchString, ele) {
 			// and break from loop
 			if (matchString.search(list[i]) >= 0) {
 				bool = true;
-				appendDiv(true);;
-				break;
+				//appendDiv(true);
+				//break;
+				addPopover(ele, true);
+				return;
 			}
+		}
+		if (matchString.search(/imgur.com/) >= 0) {
+			// For image hover
+			imgProc(matchString, ele);
+			return;
 		}
 		// No match found, display the url
 		if (bool == false) {
-			appendDiv(matchString);
+			//appendDiv(matchString);
+			addPopover(ele, matchString);
+			return;
 		}
 		// Append the DIV under the current hovered element
 		append(ele);
