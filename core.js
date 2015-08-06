@@ -9,13 +9,10 @@ var urlTag = $(document.createElement('p'));
 
 // Get the path of the check image
 var check = $(document.createElement('img'));
-var checkURL = chrome.extension.getURL("images/check.png");
+var checkURL = chrome.extension.getURL("images/open.png");
 check.attr( "src", checkURL);
-check.height(20);
-check.width(20);
-			
-// Create the image as the holder
-var img = $(document.createElement("img"));
+check.height(10);
+check.width(10);
 
 // Mouse listener for hovering over hyper-link <A>.
 $('a').hover( 
@@ -25,17 +22,18 @@ $('a').hover(
 		// Pass url and the current element to callback function
 		filter(url, $(this)); 
 		// For image hover
-		imgProc(url, img, $(this));
+		//imgProc(url, $(this));
 	},
   
 	// Mouse out
 	function() {
 		$(this).detach(".core");
-		img.attr("src", "");
-		img.css("height", "auto", "width", "auto");
+		imgClear();
 		newDiv.empty();
 		newDiv.hide();
-		hoverImg = false;
+		// Destroy the popover
+		$(this).popover('destroy');
+		//hide($(this));
 	}
 );
 
@@ -62,5 +60,42 @@ function appendDiv(arg){
 function append(ele) {
 	ele.append(newDiv);
 	newDiv.show();
-
 }
+
+/**
+ * Add popover overlay to the hovering <A> tag. 
+ * @param arg		Argument to determine the data-content
+ * @param ele 		The hovering <A> tag
+ */
+function addPopover(ele, arg) {
+	if (arg == true) {
+		ele.popover({
+			content:check,
+			placement:"bottom",
+			html:"true",
+		});
+	} else {
+		ele.popover({
+			content: arg,
+			placement: "bottom"
+		});
+	}
+	ele.popover("show");
+}
+
+/**
+ * Hide the popover after delay of 450 ms.
+ * @param ele	The hovering <A> tag
+ */
+function hide(ele) {
+	setTimeout( function() {
+		ele.popover('hide');
+	}, 450);
+}
+
+/**
+ * Initiate popover on the page.
+ */
+$(function() {
+	$('[data-toggle="popover"]').popover();
+})
