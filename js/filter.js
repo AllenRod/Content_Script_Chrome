@@ -16,20 +16,16 @@ function filter(matchString, ele) {
 		if (result["filter"]) {
 			list = result["filter"];
 		} else {
-			//appendDiv(matchString);
-			//append(ele);
-			addPopover(ele, matchString);
+			addPopover(ele, false);
 			return;
 		}
 		// Split list into array
 		list = list.split(";");
 		for (var i = 0; i < list.length; i++) {
-			// Check if there is a matched, if yes display check image 
-			// and break from loop
+			// Check if there is a matched, if yes display modal button 
+			// and exit the method
 			if (matchString.search(list[i]) >= 0) {
 				bool = true;
-				//appendDiv(true);
-				//break;
 				addPopover(ele, true);
 				return;
 			}
@@ -41,11 +37,8 @@ function filter(matchString, ele) {
 		}
 		// No match found, display the url
 		if (bool == false) {
-			//appendDiv(matchString);
-			addPopover(ele, matchString);
+			addPopover(ele, false);
 			return;
 		}
-		// Append the DIV under the current hovered element
-		append(ele);
 	});
 }
