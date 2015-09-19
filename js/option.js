@@ -11,13 +11,13 @@ window.onload = function() {
 			$("#lists").val(result["filter"]);
 		} else {
 			$("#lists").val("The list is currently empty, please remove " + 
-			"this line and enter your trusted web domains.");
+			"this line and input trusted web domains.");
 		}
 	});
 	
 	/**
 	 * Save the content in "#list" textarea in local storage.
-	 * Triggered by "#save" button.
+	 * Triggered by "Save" button.
 	 */
 	$("#save").click( function() {
 		$("#lists").change( function() {
@@ -41,4 +41,3 @@ window.onload = function() {
 		});
 	});
 }
-
