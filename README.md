@@ -1,21 +1,26 @@
 # Content_Script_Chrome
-Simple Chrome extension that adds features on a forum website.
-Hover Zoom for images from a image hosting site.
+Chrome extension designed to add features and improve browsing experience on website https://www.reddit.com.
+To load the extension, enable Developer Mode on chrome://extensions in Chrome browser, and click on Load Unpack Extension to find and load the directory of these files.
 
-Even though chrome already shows the URL of hyper-link at the bottom left corner, for convenience I use Bootstrap popover to display the URL for better sight.
-I plan to add on other features in the future to further improve this extension.
+Features:
+- Hover Zoom for images from image hosting site https://imgur.com.
+  
+  Provide a shortcut to view images instead of going to the site. This only works on non gallery and non album imgur links.
 
-Use JQuery 1.11.3 as well as Bootstrap 3.3.5.
-Some non-important files are not included. 
+- Display hyper-link URL. 
+  
+  Even though chrome already shows the URL of links at the bottom of browser, for convenience I use Bootstrap popover to display the URL for better viewing.
 
-Add a filter list to store trusted domains and change the display of DIV.
-After trying with AJAX and other storing method, chrome.storage is chosen and used to store the filter list in the computer.
-Now it successfully loads and saves the filter list.
-Filter list now can filter trusted websites, and elminate the display of URL.
+- Filter list to store trusted domains and enable page preview.
+  
+  Filter list can filter trusted web domains, and elminate the display of URL. After trying with AJAX and other methods for storing and accessing the list on local machine, I used Chrome API chrome.storage and it can successfully save and load the filter list from local machine. 
 
-Plan on adding a modal to display videoes, albums, and multimedia. 
-Also will add different styles for Hover Zoom function and fix the rest of the stuff.
+- Display page preview with modal window. 
+  
+  Use Bootstrap modal and iframe to display pages, as well as videoes, albums, and multimedia. To close the modal, click on darker area outside the modal window. Since iframe is used, going back to previous page needs extra steps.
+
+
+Use JQuery 1.11.3 and Bootstrap 3.3.5.
 
 TODO:
-Allow displays of galleries, albums, videoes, gifs, and other medias with iframe
-Improve or add on new stuffs with Bootstrap
+Add options on the display of image Hover Zoom
