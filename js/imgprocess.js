@@ -5,10 +5,8 @@
   
 // Create the image as the holder
 var img = $(document.createElement("img"));
-var frame = $(document.createElement("iframe"));
-frame.addClass("contaier");
-frame.attr("scrolling", "no", "allowfullscreen", "true",
-"height", "auto", "width", "auto");
+img.addClass("img-rounded");
+img.addClass("core");
 
 /**
  * Get the image from the URL and display with a <IMG> tag.
@@ -18,31 +16,25 @@ frame.attr("scrolling", "no", "allowfullscreen", "true",
 function imgProc(matchString, ele) {
 	if (/imgur.com/.test(matchString)) {
 		// The URL leads to imgur.com
-		if ((/.webm\b/.test(matchString))
-		|| (/domain/.test(matchString))) {
-			appendDiv(true);
-		} else if ((/gallery/.test(matchString)) || 
-		(/\/a\//.test(matchString))) {
-			//frame.attr("src", matchString);
-			//appendDiv(frame);
-		} else {
-			if (/.gifv\b/.test(matchString)) {
-				var n = matchString.indexOf(".gifv");
-				matchString = matchString.substr(0, n);
-				matchString += ".jpg";
-			} else if ((!(/.jpg\b/.test(matchString))) 
-			&& (!(/.png\b/.test(matchString))) 
-			&& (!(/.gif\b/.test(matchString)))) {
-				matchString += ".jpg";
-			}
-			img.attr("src", matchString);
-			img.load(function() {
-				resize(img);
-			});
-			appendDiv(img);
+		if (/.gifv\b/.test(matchString)) {
+			// Manipulate URL
+			var n = matchString.indexOf(".gifv");
+			matchString = matchString.substr(0, n);
+			matchString += ".jpg";
+		} else if ((!(/.jpg\b/.test(matchString))) 
+		&& (!(/.png\b/.test(matchString))) 
+		&& (!(/.gif\b/.test(matchString)))) {
+			// Manipulate URL
+			matchString += ".jpg";
 		}
+		img.attr("src", matchString);
+		// Resize image
+		img.load(function() {
+			resize(img);
+		});
+		img.show();
+		append(img, ele);
 	}
-	append(ele);
 }
 
 /**
@@ -66,4 +58,5 @@ function resize(image) {
 function imgClear() {
 	img.attr("src", "");
 	img.css("height", "auto", "width", "auto");
+	img.hide();
 }
