@@ -1,25 +1,26 @@
 {
 	"manifest_version":2,
 	
-	"name":"URL Extract + Hover Image",
-	"description":"hover mouse over hyper-link to extract URL or image",
-	"version":"4.4",
+	"name":"Content Script",
+	"description":"A chrome extension designed for 'https://reddit.com' to improve browsing experience.",
+	"version":"5.2",
 	
 	"browser_action":{
-		"default_popup":"popup.html"
+		"default_popup":"html/popup.html"
 	},
 	
 	"content_scripts":[
 	{
 		"matches":["http://www.reddit.com/*", "https://www.reddit.com/*"],
-		"js":["jquery-1.11.3.min.js","core.js","index.js","filter.js","option.js",
-		"imgprocess.js", "bootstrap.min.js"],
-		"css":["bootstrap.min.css", "core.css"]
+		"js":["js/jquery-1.11.3.min.js","js/core.js","js/index.js",
+		"js/filter.js","js/option.js","js/modalexpand.js", "js/imgprocess.js", 
+		"js/bootstrap.min.js", "js/embedvideo.js"],
+		"css":["css/bootstrap.min.css", "css/core.css"]
 	}
 	],
 	
 	"web_accessible_resources": [
-		"images/*.png","index.html"
+		"images/*.png","html/index.html"
 	],
 	
 	"permissions": [
