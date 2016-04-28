@@ -3,7 +3,7 @@
 	
 	"name":"Content Script",
 	"description":"A chrome extension designed for 'https://reddit.com' to improve browsing experience.",
-	"version":"5.2",
+	"version":"6.2",
 	
 	"browser_action":{
 		"default_popup":"html/popup.html"
@@ -14,7 +14,7 @@
 		"matches":["http://www.reddit.com/*", "https://www.reddit.com/*"],
 		"js":["js/jquery-1.11.3.min.js","js/core.js","js/index.js",
 		"js/filter.js","js/option.js","js/modalexpand.js", "js/imgprocess.js", 
-		"js/bootstrap.min.js", "js/embedvideo.js"],
+		"js/bootstrap.min.js"],
 		"css":["css/bootstrap.min.css", "css/core.css"]
 	}
 	],
