@@ -3,8 +3,9 @@
 <head>
 	<title> Index </title>
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-	<script src="/js/option.js"></script>
 	<script src="/js/jquery-1.11.3.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/option.js"></script>
 </head>
 
 <body>
@@ -20,8 +21,21 @@
 	<textarea rows="4" cols="100" class="form-control" id="lists"></textarea>
 	
 	</br>
-	<button type="button" class="btn btn-success" id="save">Save</button>
+	<button type="button" class="btn btn-success" id="save" data-toggle="modal" data-target="#saveAlert">Save</button>
 	<button type="button" class="btn btn-warning" id="clear">Clear All</button>
 	</div>
+	
+	<div class="modal fade modal-sm" id="saveAlert" tabindex="-1" role="dialog" style="width:100%;">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<p>Save completes!</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div><!-- /.modal -->
 </body>
 </html>
