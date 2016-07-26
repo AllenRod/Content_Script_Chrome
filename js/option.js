@@ -1,7 +1,7 @@
 /**
  * Manage loading, displaying, saving and clearing the list from storage.
- */
-window.onload = function() {
+ */ 
+$(window).load( function() {
 	/**
 	 * Get the saved object from storage, and display in "#list" textarea.
 	 * If storage is empty, display the text instead.
@@ -20,12 +20,9 @@ window.onload = function() {
 	 * Triggered by "Save" button.
 	 */
 	$("#save").click( function() {
-		$("#lists").change( function() {
-			return;
-		})
 		var newList = $("#lists").val();
 		if (newList) {
-			chrome.storage.local.set({"filter":newList}, function() {
+			chrome.storage.local.set({"filter":newList}, function() {				
 				return;
 			})
 		}
@@ -40,4 +37,4 @@ window.onload = function() {
 			$("#lists").val("");
 		});
 	});
-}
+});
