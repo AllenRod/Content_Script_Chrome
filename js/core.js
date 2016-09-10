@@ -90,5 +90,5 @@ $(function() {
  * Display modal when the "Expand" button is clicked.
  */
 modalBtn.click(function() {
-	expand(url);
+	expandModal(url);
 });
