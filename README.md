@@ -17,7 +17,7 @@ Features:
 
 - Display page preview with modal window. 
   
-  Use Bootstrap modal and iframe to display pages, as well as videoes, albums, and multimedia. To close the modal, click on darker area outside the modal window. Since iframe is used, going back to previous page needs extra steps.
+  Use Bootstrap modal and Embedly Cards API to display embeded pages, such as as videoes, images, and other forms of multimedia. To close the modal, click on darker area outside the modal window.
 
 
 Use JQuery 1.11.3 and Bootstrap 3.3.5.
